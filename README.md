@@ -42,6 +42,8 @@ public class MainActivity extends BaseActivity {
 
 #### For activities with dialogs 
 
+> `BaseWithDialogActivity extends BaseActivity`
+
 ```java
 @InjectLayout(layout = R.layout.activity_main)
 public class MainActivity extends BaseWithDialogActivity {
@@ -60,4 +62,24 @@ public class MainActivity extends BaseWithDialogActivity {
 | Variables        | Do            | Note       |
 | ------------- |:------------- |:-----------|
 |progressDialogMessage| message to show in `showProgress()` and `showProgress(message)` | --- |
+
+
+---
+
+#### For fragments
+
+```java
+@InjectLayout(layout = R.layout.fragment_main)
+public class MainFragment extends BaseFragment {
+
+}
+```
+
+#### Methods
+
+| Method        | Do            | Note       |
+| ------------- |:------------- |:-----------|
+|modifyViews()  | method to modify your views. Ex: set text for any TextView| Called on `onStart()` |
+|getFlipBaseActivity()  | return a `BaseActivity` | --- |
+|closeKeyboard() | hide the keyboad | --- |
 
