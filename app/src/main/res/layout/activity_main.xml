@@ -10,21 +10,21 @@
     tools:context="com.jgabrielfreitas.bases.demo.MainActivity">
 
     <EditText
+        android:id="@+id/writeSomethingEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/writeSomethingEditText"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
 
     <Button
+        android:id="@+id/showMessageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Message"
-        android:id="@+id/showMessageButton"
-        android:layout_below="@+id/writeSomethingEditText"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/writeSomethingEditText"
+        android:text="Show Message" />
 </RelativeLayout>

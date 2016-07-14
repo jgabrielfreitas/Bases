@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -16,11 +15,14 @@ import android.widget.AdapterView;
 import com.jgabrielfreitas.core.fragment.BaseFragment;
 import com.jgabrielfreitas.core.util.LogUtil;
 import com.jgabrielfreitas.core.util.Util;
+import com.jgabrielfreitas.layoutid.activity.InjectLayoutBaseActivity;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by JGabrielFreitas on 13/07/16.
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends InjectLayoutBaseActivity {
 
     protected int containerId = 0; // ID from fragments container
     private String TAG = getClass().getSimpleName();
@@ -42,7 +44,27 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
+        bindButterKnife();
         modifyViews();
+    }
+
+    protected void onStop() {
+        super.onStop();
+        unbindButterKnife();
+    }
+
+    protected void bindButterKnife() {
+        if(isButterKnifeBinded == false) {
+            ButterKnife.bind(this);
+            isButterKnifeBinded = true;
+        }
+    }
+
+    protected void unbindButterKnife() {
+        if(isButterKnifeBinded == true) {
+            ButterKnife.unbind(this);
+            isButterKnifeBinded = false;
+        }
     }
 
     @Override

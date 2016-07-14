@@ -1,22 +1,22 @@
 package com.jgabrielfreitas.bases.demo;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
+import com.jgabrielfreitas.core.activity.BaseWithDialogActivity;
+import com.jgabrielfreitas.layoutid.annotations.InjectLayout;
 
-@EActivity(R.layout.activity_main)
-public class MainActivity extends AppCompatActivity {
+import butterknife.Bind;
+import butterknife.OnClick;
 
-    @ViewById EditText writeSomethingEditText;
 
-    @Click(R.id.showMessageButton)
+@InjectLayout(layout = R.layout.activity_main)
+public class MainActivity extends BaseWithDialogActivity {
+
+    @Bind(R.id.writeSomethingEditText) EditText writeSomethingEditText;
+
+    @OnClick(R.id.showMessageButton)
     public void showMessage() {
         Toast.makeText(MainActivity.this, writeSomethingEditText.getText().toString(), Toast.LENGTH_SHORT).show();
     }
-
 }
