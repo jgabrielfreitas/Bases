@@ -18,6 +18,7 @@ import com.jgabrielfreitas.core.util.Util;
 import com.jgabrielfreitas.layoutid.activity.InjectLayoutBaseActivity;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by JGabrielFreitas on 13/07/16.
@@ -26,12 +27,12 @@ public abstract class BaseActivity extends InjectLayoutBaseActivity {
 
     protected int containerId = 0; // ID from fragments container
     private String TAG = getClass().getSimpleName();
-    protected boolean animationOnIntent = true; // to do the "flip" animation between activities on intent
-    protected boolean animationBack = true; // to do the "flip" animation between activities on back pressed
+    protected boolean animationOnIntent = false;
+    protected boolean animationBack = false;
     public int animIn = android.R.anim.slide_out_right;
     public int animOut = android.R.anim.slide_in_left;
     protected boolean killAfterIntent = true;
-    protected Parcelable parcelableObject;
+    private Parcelable parcelableObject;
     private boolean isButterKnifeBinded = false;
 
     @Override
@@ -40,6 +41,14 @@ public abstract class BaseActivity extends InjectLayoutBaseActivity {
 
         if (getIntent().getExtras() != null)
             parcelableObject = getIntent().getExtras().getParcelable(Util.PARCELABLE);
+    }
+
+    protected Parcelable getParcelableObject() {
+        return parcelableObject;
+    }
+
+    public void setParcelableObject(Parcelable parcelableObject) {
+        this.parcelableObject = parcelableObject;
     }
 
     protected void onStart() {
@@ -90,6 +99,11 @@ public abstract class BaseActivity extends InjectLayoutBaseActivity {
         intentAndKill(classToIntent, parcelable, 0);
     }
 
+    public void doIntentWithRequest(Class<?> classToIntent, int requestCode) {
+
+        intentAndKill(classToIntent, null, requestCode);
+    }
+
     public void doIntentWithRequest(Class<?> classToIntent, Parcelable parcelable, int requestCode) {
 
         intentAndKill(classToIntent, parcelable, requestCode);
@@ -130,10 +144,6 @@ public abstract class BaseActivity extends InjectLayoutBaseActivity {
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
     }
-
-    public void onClick(View v) {}
-
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {}
 
     public void onBackPressed() {
 
@@ -177,7 +187,7 @@ public abstract class BaseActivity extends InjectLayoutBaseActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                killThisActivity();
             }
         });
     }

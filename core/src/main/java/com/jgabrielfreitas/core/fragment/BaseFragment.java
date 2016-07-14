@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 /**
  * Created by JGabrielFreitas on 13/07/16.
  */
-public abstract class BaseFragment extends InjectLayoutBaseFragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+public abstract class BaseFragment extends InjectLayoutBaseFragment {
 
     BaseActivity flipBaseActivity;
 
@@ -55,13 +55,4 @@ public abstract class BaseFragment extends InjectLayoutBaseFragment implements V
             imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
         }
     }
-
-
-    public void onClick(View v) {
-    }
-
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
 }
