@@ -83,6 +83,25 @@ public class MainFragment extends BaseFragment {
 |getFlipBaseActivity()  | return a `BaseActivity` | --- |
 |closeKeyboard() | hide the keyboad | --- |
 
+## How to
+**Step 1.** Add the JitPack repository to your build file
+```gradle
+allprojects {
+		repositories {
+			...
+			maven { url "https://jitpack.io" }
+		}
+}
+```
+
+**Step 2.** Add the dependency
+```gradle
+dependencies {
+		compile 'com.github.jgabrielfreitas:Bases:0.0.1'
+}
+```
+
+
 
 # Licenses
 
